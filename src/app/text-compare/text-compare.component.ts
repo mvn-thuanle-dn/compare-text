@@ -74,8 +74,9 @@ export class TextCompareComponent implements OnInit {
     code2: '',
     language: 'plaintext',
     theme: 'vs',
-    renderSideBySide: true,
   };
+
+  isCompare = false;
 
   ngOnInit() {}
 }

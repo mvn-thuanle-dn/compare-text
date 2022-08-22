@@ -25,57 +25,46 @@
             {{ option.name }}
           </option>
         </select>
-        <div class="form-check mb-2 mr-sm-2">
-          <label class="form-check-label">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              [(ngModel)]="options.renderSideBySide"
-              [ngModelOptions]="{ standalone: true }"
-            />
-            Inline Diff
-          </label>
-        </div>
       </form>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-title">
-        <label>Original Text</label>
-      </div>
+  <button class="my-1" type="button" (click)="isCompare = !isCompare">
+    {{ isCompare ? "Hide" : "Show" }} Diff
+  </button>
+  <div *ngIf="!isCompare; else elseBlock" class="row">
+    <div class="col-md-6 editor">
+      <h4>Original Text</h4>
       <ngx-monaco-editor
-        id="editor1"
         [options]="{ theme: options.theme, language: options.language }"
         [(ngModel)]="options.code1"
       ></ngx-monaco-editor>
     </div>
-    <div class="col-md-6">
-      <div class="input-title">
-        <label>Changed Text</label>
-      </div>
+    <div class="col-md-6 editor">
+      <h4>Modified Text</h4>
       <ngx-monaco-editor
-        id="editor2"
         [options]="{ theme: options.theme, language: options.language }"
         [(ngModel)]="options.code2"
       ></ngx-monaco-editor>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12 editor">
-      <ngx-monaco-diff-editor
-        id="diffeditor"
-        [options]="{
-          theme: options.theme,
-          language: options.language,
-          readOnly: true,
-          renderSideBySide: options.renderSideBySide
-        }"
-        [originalModel]="{ code: options.code1, language: options.language }"
-        [modifiedModel]="{ code: options.code2, language: options.language }"
-      ></ngx-monaco-diff-editor>
+  <ng-template #elseBlock>
+    <div class="row">
+      <div class="col-md-12 editor">
+        <div class="row">
+          <h4 class="col-md-6">Original Text</h4>
+          <h4 class="col-md-6">Modified Text</h4>
+        </div>
+        <ngx-monaco-diff-editor
+          [options]="{
+            theme: options.theme,
+            language: options.language
+          }"
+          [originalModel]="{ code: options.code1, language: options.language }"
+          [modifiedModel]="{ code: options.code2, language: options.language }"
+        ></ngx-monaco-diff-editor>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </div>
 <br />
 <br />

@@ -1,26 +1,9 @@
 .container-diff {
   width: 90%;
 }
-#editor1,
-#editor2 {
-  height: 500px;
-}
-#diffeditor {
-  height: 500px;
-}
-
-.editor-container {
+.editor {
   border: 1px solid #ddd;
 }
-.input-title {
-  text-align: center;
-  color: #585858;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  background-color: #ecebeb;
-}
-.input-title label {
-  margin-top: 6px;
+ngx-monaco-editor, ngx-monaco-diff-editor {
+  height: 500px;
 }
